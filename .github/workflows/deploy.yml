@@ -1,0 +1,23 @@
+name: Deploy WordPress Resume Site
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  docker-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check Dockerfile
+        run: |
+          ls
+          test -f Dockerfile
+
+      - name: Build Docker image
+        run: |
+          docker build -t wordpress-resume .
